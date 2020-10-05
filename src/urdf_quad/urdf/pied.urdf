@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+
+<robot name="quad">
+
+	<material name="blue">
+		<color rgba="0 0 1 1"/>
+	</material>
+	<material name="red">
+		<color rgba="1 0 0 1"/>
+	</material>
+	<material name="green">
+		<color rgba="0 1 0 1"/>
+	</material>
+	<material name="turquoise">
+		<color rgba="0 1 0.8 1"/>
+	</material>
+	<material name="white">
+		<color rgba="1 1 1 1"/>
+	</material>
+
+  <material name="Coral">
+    <color rgba="1 0.5 0.2 1"/>
+  </material>
+  <material name="Gray">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+
+  <material name="Yellow">
+    <color rgba="0.8 0.8 0.0 1.0"/>
+  </material>
+
+  <link name="base_foot"/>
+
+  <!--body-->
+
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.5 0.3 0.05"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="base_link_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_foot"/>
+    <child link="base_link"/>
+  </joint>
+
+  <!--Front left leg -->
+  <link name="front_left_leg">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="turquoise"/>
+    </visual>
+  </link>
+  <link name="upper_leg_left_front">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Yellow"/>
+    </visual>  
+  </link>
+
+  <joint name="upper_leg_left_front_joint" type="fixed">
+    <parent link="link_upper_leg_left_front"/>
+    <child link="upper_leg_left_front"/>
+    <origin rpy="1.5707 0 0" xyz="0 0 0.2"/>
+  </joint>
+
+  <link name="link_lower_leg_left_front">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+  <link name="link_upper_leg_left_front">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.03" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <!-- Last joint -->
+  <link name="lower_leg_left_front">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Yellow"/>
+    </visual>  
+  </link>
+
+  <joint name="lower_leg_left_front_joint" type="fixed">
+    <parent link="link_lower_leg_left_front"/>
+    <child link="lower_leg_left_front"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0.2"/>
+  </joint>
+
+  <link name="link_foot_leg_left_front">
+    <visual>
+      <origin rpy="1.5707 0 0" xyz="0 0.1 0"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+
+  <!--joint-->
+
+  <!--joint 1-->
+  <joint name="FrontLeftJoint_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_left_leg"/>
+    <origin rpy="1.5707 0.785 0" xyz="0.23 0.17 0.0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0.21" upper="1.21" velocity="100.0"/>
+  </joint>
+
+  <!--joint 2-->
+  <joint name="FrontLeftJoint_2" type="revolute">
+    <parent link="front_left_leg"/>
+    <child link="link_upper_leg_left_front"/>
+    <origin rpy="1.5707 0 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-0.1963" upper="0.1963" velocity="100.0"/>
+  </joint>
+
+  <!--joint 3-->
+  <joint name="FrontLeftJoint_3" type="revolute">
+    <parent link="upper_leg_left_front"/>
+    <child link="link_lower_leg_left_front"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-1.64" upper="0.17" velocity="100.0"/>
+  </joint>
+
+   <!--joint 4 -->
+  <joint name="FrontLeftJoint_4" type="revolute">
+    <parent link="lower_leg_left_front"/>
+    <child link="link_foot_leg_left_front"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-1.63" upper="0.62" velocity="100.0"/>
+  </joint>
+
+</robot>
+

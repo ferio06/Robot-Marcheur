@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="quadcomplet">
+  <material name="Black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="Coral">
+    <color rgba="1 0.5 0.2 1"/>
+  </material>
+  <material name="Gray">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <material name="green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+  <material name="Yellow">
+    <color rgba="0.8 0.8 0.0 1.0"/>
+  </material>
+
+
+  <link name="base_foot"/>
+
+  <!--body-->
+
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.5 0.3 0.05"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="base_link_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_foot"/>
+    <child link="base_link"/>
+  </joint>
+
+  <!--Front left leg -->
+  <link name="base_leg_left_front">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Yellow"/>
+    </visual>
+  </link>
+  <link name="upper_leg_left_front">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="green"/>
+    </visual>  
+  </link>
+
+  <joint name="upper_leg_left_front_joint" type="fixed">
+    <parent link="link_upper_leg_left_front"/>
+    <child link="upper_leg_left_front"/>
+    <origin rpy="1.5707 0 0" xyz="0 0 0.2"/>
+  </joint>
+
+  <link name="link_lower_leg_left_front">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+  <link name="link_upper_leg_left_front">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.03" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <!-- Last joint -->
+  <link name="lower_leg_left_front">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Yellow"/>
+    </visual>  
+  </link>
+
+  <joint name="lower_leg_left_front_joint" type="fixed">
+    <parent link="link_lower_leg_left_front"/>
+    <child link="lower_leg_left_front"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0.2"/>
+  </joint>
+
+  <link name="link_foot_leg_left_front">
+    <visual>
+      <origin rpy="1.5707 0 0" xyz="0 0.1 0"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+
+  <!--Joint-->
+
+  <!--Joint1-->
+  <joint name="joint_left_front_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="base_leg_left_front"/>
+    <origin rpy="1.5707 0.785 0" xyz="0.23 0.17 0.0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0.21" upper="1.21" velocity="100.0"/>
+  </joint>
+
+  <!--Joint2-->
+  <joint name="joint_left_front_2" type="revolute">
+    <parent link="base_leg_left_front"/>
+    <child link="link_upper_leg_left_front"/>
+    <origin rpy="1.5707 0 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-0.1963" upper="0.1963" velocity="100.0"/>
+  </joint>
+
+  <!--Joint3-->
+  <joint name="joint_left_front_3" type="revolute">
+    <parent link="upper_leg_left_front"/>
+    <child link="link_lower_leg_left_front"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-1.64" upper="0.17" velocity="100.0"/>
+  </joint>
+
+   <!--Joint4 -->
+  <joint name="joint_left_front_4" type="revolute">
+    <parent link="lower_leg_left_front"/>
+    <child link="link_foot_leg_left_front"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-1.63" upper="0.62" velocity="100.0"/>
+  </joint>
+
+  <!-- Frontal Right leg  -->
+  <link name="base_leg_right_front">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Yellow"/>
+    </visual>
+    
+  </link>
+  <link name="upper_leg_right_front">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+   
+  </link>
+  <joint name="upper_leg_right_front_joint" type="fixed">
+    <parent link="link_upper_leg_right_front"/>
+    <child link="upper_leg_right_front"/>
+    <origin rpy="1.5707 0 0" xyz="0 0 0.2"/>
+  </joint>
+  <link name="link_lower_leg_right_front">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+  <link name="link_upper_leg_right_front">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.03"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+	<!-- Last joint -->
+  <link name="lower_leg_right_front">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Yellow"/>
+    </visual>  
+  </link>
+
+  <joint name="lower_leg_right_front_joint" type="fixed">
+    <parent link="link_lower_leg_right_front"/>
+    <child link="lower_leg_right_front"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0.2"/>
+  </joint>
+
+  <link name="link_foot_leg_right_front">
+    <visual>
+      <origin rpy="1.5707 0  0" xyz="0 0.1 0"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <!--joint-->
+  <!--Joint1-->
+  <joint name="joint_right_front_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="base_leg_right_front"/>
+    <origin rpy="1.5707 0.785 0" xyz="0.23 -0.17 0.0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0.21" upper="1.21" velocity="100.0"/>
+  </joint>
+  <!--Joint2-->
+  <joint name="joint_right_front_2" type="revolute">
+    <parent link="base_leg_right_front"/>
+    <child link="link_upper_leg_right_front"/>
+    <origin rpy="1.5707 0 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-0.1963" upper="0.1963" velocity="100.0"/>
+  </joint>
+  <!--Joint3-->
+  <joint name="joint_right_front_3" type="revolute">
+    <parent link="upper_leg_right_front"/>
+    <child link="link_lower_leg_right_front"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-1.64" upper="0.17" velocity="100.0"/>
+  </joint>
+   <!--Joint4 -->
+  <joint name="joint_right_front_4" type="revolute">
+    <parent link="lower_leg_right_front"/>
+    <child link="link_foot_leg_right_front"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-1.63" upper="0.62" velocity="100.0"/>
+  </joint>
+  <!--Rear left leg -->
+  <link name="base_leg_left_rear">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Yellow"/>
+    </visual>
+  </link>
+  <link name="upper_leg_left_rear">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+  </link>
+  <joint name="upper_leg_left_rear_joint" type="fixed">
+    <parent link="link_upper_leg_left_rear"/>
+    <child link="upper_leg_left_rear"/>
+    <origin rpy="1.5707 0 0" xyz="0 0 0.2"/>
+  </joint>
+  <link name="link_lower_leg_left_rear">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+  <link name="link_upper_leg_left_rear">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.03"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+	<!-- Last joint -->
+  <link name="lower_leg_left_rear">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Yellow"/>
+    </visual>  
+  </link>
+
+  <joint name="lower_leg_left_rear_joint" type="fixed">
+    <parent link="link_lower_leg_left_rear"/>
+    <child link="lower_leg_left_rear"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0.2"/>
+  </joint>
+
+  <link name="link_foot_leg_left_rear">
+    <visual>
+      <origin rpy="1.5707 0 0" xyz="0 0.1 0"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+  
+  <!--joint-->
+  <!--1st joint-->
+  <joint name="joint_left_rear_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="base_leg_left_rear"/>
+    <origin rpy="1.5707 0.785 0" xyz="-0.23 0.17 0.0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0.21" upper="1.21" velocity="100.0"/>
+  </joint>
+  <!--2nd joint-->
+  <joint name="joint_left_rear_2" type="revolute">
+    <parent link="base_leg_left_rear"/>
+    <child link="link_upper_leg_left_rear"/>
+    <origin rpy="1.5707 0 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-0.1963" upper="0.1963" velocity="100.0"/>
+  </joint>
+  <!--3rd joint-->
+  <joint name="joint_left_rear_3" type="revolute">
+    <parent link="upper_leg_left_rear"/>
+    <child link="link_lower_leg_left_rear"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-1.64" upper="0.17" velocity="100.0"/>
+  </joint>
+   <!--4th joint -->
+  <joint name="joint_left_rear_4" type="revolute">
+    <parent link="lower_leg_left_rear"/>
+    <child link="link_foot_leg_left_rear"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-1.63" upper="0.62" velocity="100.0"/>
+  </joint>  
+ <!--Rear right leg -->
+  <link name="base_leg_right_rear">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Yellow"/>
+    </visual>
+  </link>
+  <link name="upper_leg_right_rear">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+  </link>
+  <joint name="upper_leg_right_rear_joint" type="fixed">
+    <parent link="link_upper_leg_right_rear"/>
+    <child link="upper_leg_right_rear"/>
+    <origin rpy="1.5707 0 0" xyz="0 0 0.2"/>
+  </joint>
+  <link name="link_lower_leg_right_rear">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+  <link name="link_upper_leg_right_rear">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.03"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+	<!-- Last joint -->
+  <link name="lower_leg_right_rear">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.025"/>
+      </geometry>
+      <material name="Yellow"/>
+    </visual>  
+  </link>
+
+  <joint name="lower_leg_right_rear_joint" type="fixed">
+    <parent link="link_lower_leg_right_rear"/>
+    <child link="lower_leg_right_rear"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0.2"/>
+  </joint>
+
+  <link name="link_foot_leg_right_rear">
+    <visual>
+      <origin rpy="1.5707 0 0" xyz="0 0.1 0"/>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+  
+  <!--joint-->
+  <!--1st joint-->
+  <joint name="joint_right_rear_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="base_leg_right_rear"/>
+    <origin rpy="1.5707 0.785 0" xyz="-0.23 -0.17 0.0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="0.21" upper="1.21" velocity="100.0"/>
+  </joint>
+  <!--2nd joint-->
+  <joint name="joint_right_rear_2" type="revolute">
+    <parent link="base_leg_right_rear"/>
+    <child link="link_upper_leg_right_rear"/>
+    <origin rpy="1.5707 0 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-0.1963" upper="0.1963" velocity="100.0"/>
+  </joint>
+  <!--3rd joint-->
+  <joint name="joint_right_rear_3" type="revolute">
+    <parent link="upper_leg_right_rear"/>
+    <child link="link_lower_leg_right_rear"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-1.64" upper="0.17" velocity="100.0"/>
+  </joint>
+  <!--4th joint -->
+  <joint name="joint_right_rear_4" type="revolute">
+    <parent link="lower_leg_right_rear"/>
+    <child link="link_foot_leg_right_rear"/>
+    <origin rpy="0 1.5707 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-1.63" upper="0.62" velocity="100.0"/>
+  </joint>
+</robot>
+
