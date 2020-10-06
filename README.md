@@ -1,4 +1,4 @@
-# Robot-Marcheur
+# Robot-Marcheur(à ouvrir en tant que RAW)
 Partie 1 Conception d’une jambe
 
 1.Conception du schéma cinématique de la jambe du système
